@@ -85,6 +85,12 @@ class PDFService {
 			throw new Exception("PDF temp directory could not be found " . $pdfFolder);
 		}
 
+		// Change all the links and urls in the content to use absolute paths
+		$content = $this->fixLinks($content);
+
+		// Translate all the breaking spaces that tinymce litters everywhere
+		$content = $this->fixEntities($content); 
+
 		// Create a temp pdf file ready for the pdf convertor output 
 		$pdfFile = tempnam($pdfFolder, "pdf_");
 
@@ -96,7 +102,7 @@ class PDFService {
 			throw new Exception("PDF could not be created");
 		}
 
-				if (!file_exists($pdfFile)) {
+		if (!file_exists($pdfFile)) {
 			throw new Exception("Could not generate pdf " . $pdfFile);
 		}
 
@@ -157,15 +163,23 @@ class PDFService {
 				if ($items = $value->getElementsByTagName($tag)) {
 					foreach ($items as $item) {
 						$href = $item->getAttribute($attr);
-						if ($href && $href{0} != '/' && strpos($href, '://') === false) {
+						if ($href && $href{0} != '/' && strpos($href, 'mailto:') === false && strpos($href, '://') === false) {
 							$item->setAttribute($attr, $base . $href);
 						}
 					}
 				}
 			}
 		}
-
 		return $value->getContent();
+	}
+
+	/**
+	 * Replace html entities
+	 */
+	protected function fixEntities($content) {
+		$search = array('&nbsp;', 'Â');
+		$replace = array(' ');
+		return str_replace($search, $replace, $content);
 	}
 
 	/*

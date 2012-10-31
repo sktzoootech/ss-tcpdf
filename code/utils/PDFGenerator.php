@@ -17,8 +17,6 @@ class PDFGenerator extends TCPDF {
 	public $pdf_generator_class = 'TCPDF';
 	public $pdf_defaults = array(
 		'document' => array(
-			'logo'			=> 'logo.gif', // TCPDF ref's its images relative to its own 'images' directory
-			'logo_width'	=> 36,
 			'author'		=> 'SilverStripe CMS'
 		),
 		'generator' => array(
@@ -98,27 +96,20 @@ class PDFGenerator extends TCPDF {
 		$this->pdf_defaults['generator']['output'] = $output;
 		self::$pdf_filename = $filename;
 		
-		$this->SetFont('Helvetica', '', 11, '', true);
+		$this->SetFont('Helvetica', '', 10, '', true);
 		$this->setFontSubsetting(true);
 		$this->SetCreator($this->pdf_defaults['document']['author']);
-		//$this->SetHeaderData($this->pdf_defaults['document']['logo'], $this->pdf_defaults['document']['logo_width'], '', '');
 		$this->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
 		$this->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
 		$this->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-		$this->SetMargins(55, 35, 55, true);
-		$this->SetFooterMargin(50);
+		$this->SetMargins(50, 35, 35, true);
+		$this->setFooterMargin(20);
 		$this->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 		$this->setImageScale(PDF_IMAGE_SCALE_RATIO);
 		$this->setJPEGQuality(100);
 	}	
-	
-	/*
-	 * Override all header defaults
-	 */
+
 	public function Header() {
-		if($this->pdf_defaults['generator']['header_block']) {
-			parent::Header();
-		}
+		return;
 	}
-	
 }
