@@ -17,4 +17,4 @@ of the generated PDF document based on the page's title.
 
 2. Create a layout template called PdfPage.ss in your theme:
     
-    /themes/nait/template/Layout/PdfPage.ss 
+    /themes/--your-theme-name--/templates/Layout/PdfPage.ss 
