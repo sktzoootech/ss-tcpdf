@@ -1,4 +1,6 @@
 <?php
 
-// Add the following to mysite/_config.php
-// Object::add_extension('Page_Controller', 'PDFControllerExtension');
+// add the extension to pages
+if (class_exists('SiteTree')) {
+	Object::add_extension('Page_Controller', 'PDFControllerExtension');
+}
