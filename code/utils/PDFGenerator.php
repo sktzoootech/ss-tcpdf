@@ -5,6 +5,13 @@
  * @see http://www.tcpdf.org/
  * @author Russell Michell <russell@silverstripe.com>
  */
+
+/**
+ * Its required to include this library manually as it has been 
+ * excluded from the SS manifest to improve flush load times 
+ */
+require BASE_PATH.'/tcpdf/thirdparty/tcpdf/tcpdf.php';
+
 class PDFGenerator extends TCPDF {
 	
 	public $pdf_generator_class = 'TCPDF';
