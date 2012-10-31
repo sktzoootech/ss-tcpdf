@@ -17,7 +17,8 @@ php class for generating PDF documents, see: http://tcpdf.org.
 
 The idea here is to provide pdf generation without the use of third party
 libraries. There are other silverstripe pdf modules, but so far they all 
-depend on a third party Java app do the conversion.
+depend on a third party Java app that is executed via a command line call 
+to do the actual PDF conversion. 
 
 ## Usage Overview
 
