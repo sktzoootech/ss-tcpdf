@@ -10,7 +10,7 @@ class PDFGenerator extends TCPDF {
 	public $pdf_generator_class = 'TCPDF';
 	public $pdf_defaults = array(
 		'document' => array(
-			'logo'			=> 'aa/logo-email.gif', // TCPDF ref's its images relative to its own 'images' directory
+			'logo'			=> 'logo.gif', // TCPDF ref's its images relative to its own 'images' directory
 			'logo_width'	=> 36,
 			'author'		=> 'SilverStripe CMS'
 		),

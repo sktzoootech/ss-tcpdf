@@ -88,22 +88,6 @@ class PDFService {
 		// Create a temp pdf file ready for the pdf convertor output 
 		$pdfFile = tempnam($pdfFolder, "pdf_");
 
-/*
-		if (class_exists('Tidy')) {
-			$content = $this->tidyHtml($content);
-		} else {
-			die('Tidy library was not found');
-			$this->tidyHtmlExternal($content, $pdfFile);
-		}
-*/
-
-		// Change all the urls and hrefs in the content to use absolute paths
-//		$content = $this->fixLinks($content);
-
-		// Convert some html entities so they look nice in pdf
-//		$content = str_replace('&nbsp;', '&#160;', $content);
-
-
 		// Start up the pdf generator and tell it where to write its output
 		$pdfGenerator = new PDFGenerator($pdfFile);
 
@@ -217,41 +201,6 @@ class PDFService {
 			$response->addHeader("Content-Length",strlen($filebody));
 		}
 		return $response;
-	}
-
-	protected function tidyHtml($content) {
-		$tidyConfig = array(
-			'clean' => true,
-			'output-xhtml' => true,
-			'quote-nbsp' => false,
-			'drop-proprietary-attributes' => true,
-			'word-2000' => true,
-			'wrap' => 0,
-			'input-encoding' => 'utf8',
-			'output-encoding' => 'utf8'
-		);
-
-		$tidy = new tidy();
-		$output = $tidy->repairString($content, $tidyConfig);
-		return $output;
-	}
-
-	protected function tidyHtmlExternal($input, $output) {
-		$tidy = self::$tidy_bin;
-		if (!is_executable($tidy)) {
-			$tidy = "tidy";
-		}
-
-		$escapefn = 'escapeshellarg';
-
-		$cmd = "$tidy -utf8 -asxhtml -output " . $escapefn($output) . ' ' . $escapefn($input);
-
-		// first we need to tidy the content
-		exec($cmd, $out, $return);
-
-		if (filesize($output) <= 0) {
-			throw new Exception("Invalid Tidy output from command $cmd: " . print_r($out, true) . "\n" . print_r($return, true));
-		}
 	}
 
 }
