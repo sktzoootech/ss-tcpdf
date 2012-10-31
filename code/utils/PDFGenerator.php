@@ -1,9 +1,9 @@
 <?php
-/*
+/**
  * Basic implementation of a PDF generator, extends TCPDF
  * 
  * @see http://www.tcpdf.org/
- * @author Russell Michell
+ * @author Russell Michell <russell@silverstripe.com>
  */
 class PDFGenerator extends TCPDF {
 	
