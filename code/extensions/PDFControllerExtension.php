@@ -28,7 +28,7 @@ class PDFControllerExtension extends Extension {
 	 */
 	public function topdf() {
 		$page = $this->owner->data();
-		$outname = $page->URLSegment;
+		$outname = $page->URLSegment . '.pdf';
 		$content = $page->renderWith('PdfPage');
 		singleton('PdfService')->renderContent($content, 'browser', $outname);
 		return;
