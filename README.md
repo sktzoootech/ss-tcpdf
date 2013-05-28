@@ -1,12 +1,13 @@
 # TCPDF Module
+This forked version is compatible with legacy SS2.4
 
 ## Maintainer Contact
 
 * Michael Parkhill <mike@silverstripe.com>
 
-## Requirements
+## Minimum Requirements
 
-* SilverStripe 3.0
+* SilverStripe 2.4
 
 ## Documentation
 
