@@ -5,7 +5,7 @@
  * @author Michael Parkhill <mike@silverstripe.com>
  * @license http://silverstripe.org/bsd-license/
  */
-class PDFService {
+class PDFService extends Object{
 
 	/**
 	 * @var string
